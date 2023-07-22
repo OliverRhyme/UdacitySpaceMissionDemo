@@ -90,16 +90,19 @@ public class Simulation {
 //        return rockets;
     }
 
-    public int runSimulation(ArrayList<Rocket> rockets) {
+    public Result runSimulation(ArrayList<Rocket> rockets) {
+        int rocketCount = 0;
         int totalCost = 0;
         for (Rocket rocket : rockets) {
+            rocketCount++;
             totalCost += rocket.cost;
 
             // Keep launching and landing until successful
             while (!rocket.launch() || !rocket.land()) {
+                rocketCount++;
                 totalCost += rocket.cost;
             }
         }
-        return totalCost;
+        return new Result(rocketCount, totalCost);
     }
 }

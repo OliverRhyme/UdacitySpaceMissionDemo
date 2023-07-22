@@ -1,6 +1,7 @@
 package dev.rhyme;
 
 import dev.rhyme.rocket.Rocket;
+import dev.rhyme.simulation.Result;
 import dev.rhyme.simulation.Simulation;
 
 import java.util.ArrayList;
@@ -23,17 +24,17 @@ public class Main {
         System.out.println("=============");
 
         ArrayList<Rocket> u1Phase1Rockets = simulation.loadU1(phase1Items);
-        int u1Phase1 = simulation.runSimulation(u1Phase1Rockets);
+        Result u1Phase1Result = simulation.runSimulation(u1Phase1Rockets);
 
         ArrayList<Rocket> u1Phase2Rockets = simulation.loadU1(phase2Items);
-        int u1Phase2 = simulation.runSimulation(u1Phase2Rockets);
+        Result u1Phase2Result = simulation.runSimulation(u1Phase2Rockets);
 
-        System.out.println("Phase 1 Rocket Count: " + u1Phase1Rockets.size());
-        System.out.println("Phase 1 Estimated Cost: " + formatCurrency(u1Phase1));
-        System.out.println("Phase 2 Rocket Count: " + u1Phase2Rockets.size());
-        System.out.println("Phase 2 Estimated Cost: " + formatCurrency(u1Phase2));
+        System.out.println("Phase 1 Estimated Rockets: " + u1Phase1Result.rocketCount());
+        System.out.println("Phase 1 Estimated Cost: " + formatCurrency(u1Phase1Result.totalCost()));
+        System.out.println("Phase 2 Rocket Count: " + u1Phase2Result.rocketCount());
+        System.out.println("Phase 2 Estimated Cost: " + formatCurrency(u1Phase2Result.totalCost()));
 
-        int u1Total = u1Phase1 + u1Phase2;
+        int u1Total = u1Phase1Result.totalCost() + u1Phase2Result.totalCost();
         System.out.println("Total Estimated Cost: " + formatCurrency(u1Total));
 
         System.out.println();
@@ -44,17 +45,17 @@ public class Main {
         System.out.println("=============");
 
         ArrayList<Rocket> u2Phase1Rockets = simulation.loadU2(phase1Items);
-        int u2Phase1 = simulation.runSimulation(u2Phase1Rockets);
+        Result u2Phase1Result = simulation.runSimulation(u2Phase1Rockets);
 
         ArrayList<Rocket> u2Phase2Rockets = simulation.loadU2(phase2Items);
-        int u2Phase2 = simulation.runSimulation(u2Phase2Rockets);
+        Result u2Phase2Result = simulation.runSimulation(u2Phase2Rockets);
 
-        System.out.println("Phase 1 Rocket Count: " + u2Phase1Rockets.size());
-        System.out.println("Phase 1 Estimated Cost: " + formatCurrency(u2Phase1));
-        System.out.println("Phase 2 Rocket Count: " + u2Phase2Rockets.size());
-        System.out.println("Phase 2 Estimated Cost: " + formatCurrency(u2Phase2));
+        System.out.println("Phase 1 Rocket Count: " + u2Phase1Result.rocketCount());
+        System.out.println("Phase 1 Estimated Cost: " + formatCurrency(u2Phase1Result.totalCost()));
+        System.out.println("Phase 2 Rocket Count: " + u2Phase2Result.rocketCount());
+        System.out.println("Phase 2 Estimated Cost: " + formatCurrency(u2Phase2Result.totalCost()));
 
-        int u2Total = u2Phase1 + u2Phase2;
+        int u2Total = u2Phase1Result.totalCost() + u2Phase2Result.totalCost();
         System.out.println("Total Estimated Cost: " + formatCurrency(u2Total));
 
         System.out.println();
