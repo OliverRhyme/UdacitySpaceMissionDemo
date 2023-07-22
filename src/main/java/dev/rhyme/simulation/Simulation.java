@@ -70,7 +70,7 @@ public class Simulation {
     }
 
     public ArrayList<Rocket> loadU2(ArrayList<Item> items) {
-        return loadRocket(items, U2::new);
+        return loadRocket(items, () -> new U2());
 
 //        items.sort((o1, o2) -> Integer.compare(o2.weight(), o1.weight()));
 //
